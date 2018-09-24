@@ -1,5 +1,23 @@
 import sys
 
+def get_user_input():
+
+    new_restaurant_name = input("Choose a restaurant: ")
+    new_restaurant_score = input("Rate that restaurant on a scale from 1 to 5: ")
+
+    while True:
+
+        if int(new_restaurant_score) > 5 or int(new_restaurant_score) < 1:
+            print("Your rating was out of range. Please choose again.")
+            new_restaurant_score = input("Rate that restaurant on a scale from 1 to 5: ")
+
+        if 1 <= int(new_restaurant_score) <= 5:
+            break
+
+    new_info = (new_restaurant_name, new_restaurant_score)
+
+    return new_info
+
 def list_restaurant_ratings(the_file):
 
     """Restaurant rating lister."""
@@ -16,10 +34,9 @@ def list_restaurant_ratings(the_file):
 
         restaurant_ratings[item[0]] = item[1]
 
-    new_restaurant_name = input("Choose a restaurant! ")
-    new_restaurant_score = input("Rate that restaurant on a scale from 1 to 5. ")
+    user_input = get_user_input()
 
-    restaurant_ratings[new_restaurant_name] = new_restaurant_score
+    restaurant_ratings[user_input[0]] = user_input[1]
 
     return restaurant_ratings
 
